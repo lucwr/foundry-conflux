@@ -1,0 +1,3 @@
+ds-test/=/home/null/Desktop/Foundry+Conflux/lib/ds-test/src/
+weird-erc20/=/home/null/Desktop/Foundry+Conflux/lib/solmate/lib/weird-erc20/src/
+solmate/=/home/null/Desktop/Foundry+Conflux/lib/solmate/src/
