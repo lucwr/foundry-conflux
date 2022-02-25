@@ -5,7 +5,7 @@ import "ds-test/test.sol";
 import "../Swapper.sol";
 import "../Token1.sol";
 import "../Token2.sol";
-import "ds-test/hevm.sol";
+import "../../lib/hevm.sol";
 import "../../lib/console.sol";
 
 contract SwapperTest is DSTest, ISwapper {
