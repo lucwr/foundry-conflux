@@ -22,12 +22,14 @@ contract SwapperTest is DSTest, ISwapper {
         vm.prank(owner1);
         t1 = new Token1();
         t2 = new Token2();
+        //manually change ether balance of owner1 so he has gas
         vm.deal(owner1, 1e19);
     }
 
     //owner1 places an order of 100Token1 for 10 Token2
     function testSwap() public {
         t2.approve(address(s), 100e18);
+        //start address impersonation of owner1
         vm.startPrank(owner1);
         t1.approve(address(s), 100e18);
         OrderIn memory oIn = OrderIn(
@@ -37,10 +39,14 @@ contract SwapperTest is DSTest, ISwapper {
             10e18,
             address(t2)
         );
+
         ORDER = s.placeOrder(oIn);
+        //stop address impersonation
         vm.stopPrank();
         console.log(t1.balanceOf(owner1));
+        //msg.sender fulfills owner1 token order
         s.fulfillOrder(ORDER, 10e18);
+        //perform equality checcks
         assertEq(t1.balanceOf(sender), 10e18);
         assertEq(t2.balanceOf(owner1), 1e18);
     }
